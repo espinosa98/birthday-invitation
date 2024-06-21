@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación de Cumpleaños</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom right, #ff7e5f, #feb47b);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+        }
+
+        .container h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .container p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .container .rsvp {
+            font-size: 1.1em;
+            background: #ff7e5f;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .container .rsvp:hover {
+            background: #feb47b;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+            color: #000;
+        }
+
+        .modal-content .close {
+            background: #ff7e5f;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .modal-content .close:hover {
+            background: #feb47b;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="particles-js"></div>
+    <h1>¡Estás Invitado!</h1>
+    <p>Únete a nosotros para celebrar el cumpleaños de Alberto Espinosa
+    <p>Fecha: 21 de Julio, 2024</p>
+    <p>Hora: 7:00 PM</p>
+    <p>Ubicación: Valle Grande</p>
+    <button class="rsvp">Confirmar Asistencia</button>
+</div>
+
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <h2>Gracias por confirmar tu asistencia</h2>
+        <button class="close">Cerrar</button>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+<script>
+    document.querySelector('.rsvp').addEventListener('click', () => {
+        document.getElementById('modal').style.display = 'flex';
+    });
+
+    document.querySelector('.close').addEventListener('click', () => {
+        document.getElementById('modal').style.display = 'none';
+    });
+
+    document.querySelector('.rsvp').addEventListener('click', () => {
+        document.getElementById('modal').style.display = 'flex';
+        launchConfetti();
+    });
+
+    function launchConfetti() {
+        var end = Date.now() + (5 * 1000);
+
+        // Use default confetti settings
+        var interval = setInterval(function() {
+            if (Date.now() > end) {
+                return clearInterval(interval);
+            }
+
+            confetti({
+                startVelocity: 30,
+                spread: 360,
+                ticks: 60,
+                origin: {
+                    x: Math.random(),
+                    y: Math.random() - 0.2
+                }
+            });
+        }, 200);
+    }
+</script>
+
+</body>
+</html>
